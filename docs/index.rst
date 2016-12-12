@@ -1,0 +1,5 @@
+====================
+collective.smartappbanner
+====================
+
+User documentation
