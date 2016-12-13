@@ -12,39 +12,59 @@ class ISmartappbannerBaseSettings(Interface):
     # - appStoreLanguage
     # - Title
     # - author
-    # - button
     # - price
     # - - IOS
     # - - Android
     # - - Windows
     # - icon
-
-    address = schema.Text(
-        title=_(u"Address"),
-        description=_(u"Content of the address block in the footer."),
+    title = schema.TextLine(
+        title=_(u"Title"),
+        description=_(u"Title of the app"),
+        required=True,
+    )
+    author = schema.TextLine(
+        title=_(u"Author"),
+        description=_(u"Author/Owner of the app"),
+        required=True,
+    )
+    icon = schema.TextLine(
+        title=_(u"Icon"),
+        description=_(u"Icon to show on banner"),
+        required=True,
+    )
+    daysHidden = schema.TextLine(
+        title=_(u"Days Hidden"),
+        description=_(u"Days to hide banner after close button is clicked"
+                      u" (defaults to 15)"),
         required=False,
     )
-    links_one = schema.Text(
-        title=_(u"Links column one"),
-        description=_(u"Content of the links block in the footer. Links are "
-                      u"formatted as Title|path or Title|url. The path is used"
-                      u" for internal links, for instance News|news for a link"
-                      u" to http://domain.com/news or Deep|somewhere/in/the/"
-                      u"site/but/very/deep for a link to http://domain.com/"
-                      u"somewhere/in/the/site/but/very/deep. The url is used "
-                      u"for external links, for instance "
-                      u"Plone|http://plone.org."),
+    daysReminder = schema.TextLine(
+        title=_(u"Days Reminder"),
+        description=_(u"Days to hide banner after button is clicked"
+                      u" (defaults to 90)"),
         required=False,
     )
-    links_two = schema.Text(
-        title=_(u"Links column two"),
-        description=_(u"Content of the links block in the footer. Links are "
-                      u"formatted as Title|path or Title|url. The path is used"
-                      u" for internal links, for instance News|news for a link"
-                      u" to http://domain.com/news or Deep|somewhere/in/the/"
-                      u"site/but/very/deep for a link to http://domain.com/"
-                      u"somewhere/in/the/site/but/very/deep. The url is used "
-                      u"for external links, for instance "
-                      u"Plone|http://plone.org."),
+    appStoreLanguage = schema.TextLine(
+        title=_(u"appStore Language"),
+        description=_(u"Language code for the App Store"
+                      u" (defaults to user's browser language)"),
+        required=False,
+    )
+    priceIOS = schema.TextLine(
+        title=_(u"Price for IOS"),
+        description=_(u"How much does the app cost in IOS"
+                      u" (defaults to free)"),
+        required=False,
+    )
+    priceAndroid = schema.TextLine(
+        title=_(u"Price for Android"),
+        description=_(u"How much does the app cost in Android"
+                      u" (defaults to free)"),
+        required=False,
+    )
+    priceWindows = schema.TextLine(
+        title=_(u"Price for Windows"),
+        description=_(u"How much does the app cost in Windows"
+                      u" (defaults to free)"),
         required=False,
     )
