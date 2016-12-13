@@ -18,4 +18,11 @@
       directory="static"
       />
 
+  <browser:page
+    name="smartappbanner-settings"
+    for="Products.CMFCore.interfaces.ISiteRoot"
+    class=".settings.SettingsView"
+    permission="cmf.ManagePortal"
+    />
+
 </configure>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from plone import api
 from collective.smartappbanner.testing import COLLECTIVE_SMARTAPPBANNER_INTEGRATION_TESTING  # noqa
+from plone import api
 
 import unittest
 
