@@ -11,18 +11,26 @@
       layer="collective.smartappbanner.interfaces.ICollectiveSmartappbannerLayer"
       />
 
-  <!-- Publish static files -->
-  <plone:static
-      name="collective.smartappbanner"
-      type="plone"
-      directory="static"
-      />
-
+  <!-- Publish static files  -->
+  <browser:resourceDirectory
+    name="collective.smartappbanner"
+    directory="static" />
+ 
   <browser:page
     name="smartappbanner-settings"
     for="Products.CMFCore.interfaces.ISiteRoot"
     class=".settings.SettingsView"
     permission="cmf.ManagePortal"
+    />
+
+  <browser:viewlet
+    name="smartappbanner"
+    for="*"
+    manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+    class=".viewlets.smartappbannerViewlet"
+    layer="..interfaces.ICollectiveSmartappbannerLayer"
+    template="smartappbanner.pt"
+    permission="zope2.View"
     />
 
 </configure>
