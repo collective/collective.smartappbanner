@@ -1,4 +1,6 @@
 graft src/collective
 graft docs
 include *.rst
+include *.txt
+include LICENSE.GPL
 global-exclude *.pyc
