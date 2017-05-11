@@ -6,33 +6,28 @@
 collective.smartappbanner
 =========================
 
-Tell me what your product does
+Customisable smart app banners on Plone for iOS and Android.
 
 Features
 --------
 
-- Can be bullet points
+- Uses `smartbanner.js <https://github.com/ain/smartbanner.js>`_ from Ain Tohvri.  (Thanks!)
+- Adds meta tags, which are handled by the javascript to show a banner for your app when viewed on a mobile device.
 
 
-Examples
---------
+..  Examples
+    --------
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+    This add-on can be seen in action at the following sites:
+    - Is there a page on the internet where everybody can see the features?
 
 
-Translations
-------------
+..  Translations
+    ------------
 
-This product has been translated into
+    This product has been translated into
 
-- Klingon (thanks, K'Plai)
+    - Klingon (thanks, K'Plai)
 
 
 Installation
@@ -50,20 +45,23 @@ Install collective.smartappbanner by adding it to your buildout::
 
 and then running ``bin/buildout``
 
+After you start your Plone Site, you can install it in the add-ons control panel.
+This adds a control panel where you can configure the app name, urls, supported platforms, etcetera.
 
-Contribute
-----------
+.. TODO This is still on bitbucket.
 
-- Issue Tracker: https://github.com/collective/collective.smartappbanner/issues
-- Source Code: https://github.com/collective/collective.smartappbanner
-- Documentation: https://docs.plone.org/foo/bar
+    Contribute
+    ----------
+
+    - Issue Tracker: https://github.com/collective/collective.smartappbanner/issues
+    - Source Code: https://github.com/collective/collective.smartappbanner
 
 
 Support
 -------
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+If you are having issues, please let us know by using the issue tracker.
+
 
 
 License

@@ -15,7 +15,7 @@ long_description = '\n\n'.join([
 setup(
     name='collective.smartappbanner',
     version='1.0a1',
-    description="An add-on for Plone",
+    description="Smart app banners on Plone for iOS and Android.",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -28,8 +28,8 @@ setup(
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
     keywords='Python Plone',
-    author='Lennard Huiskes',
-    author_email='l.huiskes@zestsoftware.nl',
+    author='Zest Software',
+    author_email='info@zestsoftware.nl',
     url='https://pypi.python.org/pypi/collective.smartappbanner',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
