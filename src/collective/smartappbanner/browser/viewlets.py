@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from collective.smartappbanner.browser.interfaces import ISmartappbannerBaseSettings  # noqa
+from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError
@@ -26,6 +27,14 @@ class smartappbannerViewlet(ViewletBase):
             return
         platforms = u','.join(platforms)
 
+        # Get icon url
+        icon = self.settings.icon
+        if icon and not icon.startswith(u'http'):
+            nav_root = api.portal.get_navigation_root(self.context)
+            if not icon.startswith(u'/'):
+                icon = u'/' + icon
+            icon = nav_root.absolute_url() + icon
+
         tags = {}
         # We add all options, even those who are empty.
         # The javascript expects this.
@@ -34,8 +43,8 @@ class smartappbannerViewlet(ViewletBase):
         tags['smartbanner:price'] = self.settings.price
         tags['smartbanner:price-suffix-apple'] = 'On the App Store'
         tags['smartbanner:price-suffix-google'] = 'In Google Play'
-        tags['smartbanner:icon-apple'] = self.settings.icon
-        tags['smartbanner:icon-google'] = self.settings.icon
+        tags['smartbanner:icon-apple'] = icon
+        tags['smartbanner:icon-google'] = icon
         tags['smartbanner:button'] = self.settings.button_text
         tags['smartbanner:button-url-apple'] = ios_url
         tags['smartbanner:button-url-google'] = android_url
