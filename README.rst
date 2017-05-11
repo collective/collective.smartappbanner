@@ -22,12 +22,12 @@ Features
     - Is there a page on the internet where everybody can see the features?
 
 
-..  Translations
-    ------------
+Translations
+------------
 
-    This product has been translated into
+This product has been translated into
 
-    - Klingon (thanks, K'Plai)
+- Dutch (Maurits van Rees)
 
 
 Installation

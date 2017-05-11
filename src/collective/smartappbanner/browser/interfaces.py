@@ -24,7 +24,7 @@ class ISmartappbannerBaseSettings(Interface):
     )
     icon = schema.TextLine(
         title=_(u'Icon used in banner'),
-        description=_(u'Path to default image'),
+        description=_(u'Path or url to image'),
         default=u'/logo.png',
         required=False,
     )
