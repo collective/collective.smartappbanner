@@ -7,33 +7,33 @@ from zope.interface import Interface
 class ISmartappbannerBaseSettings(Interface):
     """Smart app banner settings """
 
-    smartbannerTitle = schema.TextLine(
+    title = schema.TextLine(
         title=_(u"Name of the app"),
         required=True,
     )
-    smartbannerAuthor = schema.TextLine(
+    author = schema.TextLine(
         title=_(u"Contributors of the app"),
         required=True,
     )
-    smartbannerPrice = schema.TextLine(
+    price = schema.TextLine(
         title=_(u"Price of the app in store's"),
         required=True,
     )
-    smartbannerIcon = schema.TextLine(
+    icon = schema.TextLine(
         title=_(u"Icon used in banner"),
         description=_(u'Path to default image'),
         default=u'/logo.png',
         required=False,
     )
-    smartbannerIOSurl = schema.TextLine(
+    ios_url = schema.TextLine(
         title=_(u"Url app in Apple store"),
         required=True,
     )
-    smartbannerAndroidUrl = schema.TextLine(
+    android_url = schema.TextLine(
         title=_(u"Url app in Google play"),
         required=True,
     )
-    smartbannerPlatforms = schema.TextLine(
+    platforms = schema.TextLine(
         title=_(u"Enable platforms"),
         description=_(u"android,ios"),
         required=True,
