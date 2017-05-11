@@ -14,20 +14,21 @@ class smartappbannerViewlet(ViewletBase):
                 IRegistry).forInterface(ISmartappbannerBaseSettings)  # noqa
         except (ComponentLookupError, KeyError):
             return
-        # Do we have enabled platforms?
-        platforms = self.settings.platforms
+        # Do we have a url for at least one platform?
+        platforms = []
+        android_url = self.settings.android_url
+        if android_url:
+            platforms.append(u'android')
+        ios_url = self.settings.ios_url
+        if ios_url:
+            platforms.append(u'ios')
         if not platforms:
             return
-        # Do we have a url for at least one enabled platform?
-        android_url = self.settings.android_url
-        ios_url = self.settings.ios_url
-        has_ios = u'ios' in platforms and ios_url
-        has_android = u'android' in platforms and android_url
-        if not (has_android or has_ios):
-            return
+        platforms = u','.join(platforms)
 
         tags = {}
-
+        # We add all options, even those who are empty.
+        # The javascript expects this.
         tags['smartbanner:title'] = self.settings.title
         tags['smartbanner:author'] = self.settings.author
         tags['smartbanner:price'] = self.settings.price
@@ -38,7 +39,6 @@ class smartappbannerViewlet(ViewletBase):
         tags['smartbanner:button'] = self.settings.button_text
         tags['smartbanner:button-url-apple'] = ios_url
         tags['smartbanner:button-url-google'] = android_url
-        tags['smartbanner:enabled-platforms'] = ','.join(
-            self.settings.platforms)
+        tags['smartbanner:enabled-platforms'] = platforms
 
         return tags
