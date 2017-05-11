@@ -33,6 +33,6 @@
         media=""
         rel="stylesheet"
         rendering="import"
-        insert-after="ploneKss.css" />
+     />
 
 </object>
