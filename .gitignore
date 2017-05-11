@@ -1,4 +1,5 @@
 .coverage
+.Python
 *.egg-info
 *.log
 *.mo
