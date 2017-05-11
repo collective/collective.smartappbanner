@@ -1,6 +1,6 @@
 /*!
- * smartbanner.js v1.2.0 <https://github.com/ain/smartbanner.js>
- * Copyright © 2016 Ain Tohvri, contributors. Licensed under GPL-3.0.
+ * smartbanner.js v1.5.0 <https://github.com/ain/smartbanner.js>
+ * Copyright © 2017 Ain Tohvri, contributors. Licensed under GPL-3.0.
  */
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
@@ -66,6 +66,11 @@ var Detector = function () {
       } else if (/Android/i.test(window.navigator.userAgent)) {
         return 'android';
       }
+    }
+  }, {
+    key: 'userAgentMatchesRegex',
+    value: function userAgentMatchesRegex(regexString) {
+      return new RegExp(regexString).test(window.navigator.userAgent);
     }
   }, {
     key: 'jQueryMobilePage',
@@ -326,12 +331,14 @@ function handleExitClick(event, self) {
 }
 
 function handleJQueryMobilePageLoad(event) {
-  setContentPosition(event.data.height);
+  if (!this.positioningDisabled) {
+    setContentPosition(event.data.height);
+  }
 }
 
 function addEventListeners(self) {
   var closeIcon = document.querySelector('.js_smartbanner__exit');
-  closeIcon.addEventListener('click', function () {
+  closeIcon.addEventListener('click', function (event) {
     return handleExitClick(event, self);
   });
   if (_detector2.default.jQueryMobilePage()) {
@@ -396,20 +403,38 @@ var SmartBanner = function () {
     value: function publish() {
       if (Object.keys(this.options).length === 0) {
         throw new Error('No options detected. Please consult documentation.');
-      } else if (_bakery2.default.baked || !_detector2.default.platform() || !this.platformEnabled) {
+      }
+
+      if (_bakery2.default.baked) {
         return false;
       }
+
+      // User Agent was explicetely excluded by defined excludeUserAgentRegex
+      if (this.userAgentExcluded) {
+        return false;
+      }
+
+      // User agent was neither included by platformEnabled,
+      // nor by defined includeUserAgentRegex
+      if (!(this.platformEnabled || this.userAgentIncluded)) {
+        return false;
+      }
+
       var bannerDiv = document.createElement('div');
       document.querySelector('body').appendChild(bannerDiv);
       bannerDiv.outerHTML = this.html;
-      setContentPosition(this.height);
+      if (!this.positioningDisabled) {
+        setContentPosition(this.height);
+      }
       addEventListeners(this);
     }
   }, {
     key: 'exit',
     value: function exit() {
       removeEventListeners();
-      restoreContentPosition();
+      if (!this.positioningDisabled) {
+        restoreContentPosition();
+      }
       var banner = document.querySelector('.js_smartbanner');
       document.querySelector('body').removeChild(banner);
       _bakery2.default.bake();
@@ -474,6 +499,27 @@ var SmartBanner = function () {
     get: function get() {
       var enabledPlatforms = this.options.enabledPlatforms || DEFAULT_PLATFORMS;
       return enabledPlatforms && enabledPlatforms.replace(/\s+/g, '').split(',').indexOf(this.platform) !== -1;
+    }
+  }, {
+    key: 'positioningDisabled',
+    get: function get() {
+      return this.options.disablePositioning === 'true';
+    }
+  }, {
+    key: 'userAgentExcluded',
+    get: function get() {
+      if (!this.options.excludeUserAgentRegex) {
+        return false;
+      }
+      return _detector2.default.userAgentMatchesRegex(this.options.excludeUserAgentRegex);
+    }
+  }, {
+    key: 'userAgentIncluded',
+    get: function get() {
+      if (!this.options.includeUserAgentRegex) {
+        return false;
+      }
+      return _detector2.default.userAgentMatchesRegex(this.options.includeUserAgentRegex);
     }
   }]);
 
