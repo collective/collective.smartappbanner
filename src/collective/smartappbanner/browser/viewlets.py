@@ -29,7 +29,7 @@ class smartappbannerViewlet(ViewletBase):
         tags = {}
         # We add all options, even those who are empty.
         # The javascript expects this.
-        tags['smartbanner:title'] = self.settings.title
+        tags['smartbanner:title'] = self.settings.app_title
         tags['smartbanner:author'] = self.settings.author
         tags['smartbanner:price'] = self.settings.price
         tags['smartbanner:price-suffix-apple'] = 'On the App Store'

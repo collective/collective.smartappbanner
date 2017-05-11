@@ -7,7 +7,7 @@ from zope.interface import Interface
 class ISmartappbannerBaseSettings(Interface):
     """Smart app banner settings """
 
-    title = schema.TextLine(
+    app_title = schema.TextLine(
         title=_(u'Name of the app'),
         required=False,
         default=u'',
