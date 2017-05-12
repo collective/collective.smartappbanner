@@ -48,6 +48,8 @@ and then running ``bin/buildout``
 After you start your Plone Site, you can install it in the add-ons control panel.
 This adds a control panel where you can configure the app name, urls, supported platforms, etcetera.
 
+We only create meta tags if at least one of the App Store or Google Play urls is filled in.
+
 .. TODO This is still on bitbucket.
 
     Contribute
