@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a1 (unreleased)
+1.0a1 (2017-05-12)
 ------------------
 
 - Initial release with smartbanner.js 1.5.0.
