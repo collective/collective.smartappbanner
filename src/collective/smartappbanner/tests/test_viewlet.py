@@ -23,7 +23,7 @@ class TestViewlet(unittest.TestCase):
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
         settings = getUtility(
-            IRegistry).forInterface(ISmartappbannerBaseSettings)
+            IRegistry).forInterface(ISmartappbannerBaseSettings)  # noqa for plone.api alternative
         settings.app_title = u'Gardening for knights'
         settings.author = u'The knights who say Ni'
         settings.icon = u'shrubbery.png'
