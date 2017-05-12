@@ -25,4 +25,4 @@ after_success:
   - coveralls
 notifications:
   email:
-    - l.huiskes@zestsoftware.nl
+    - m.van.rees@zestsoftware.nl
