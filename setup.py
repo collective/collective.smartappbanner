@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.smartappbanner',
-    version='1.0a1',
+    version='1.0a2.dev0',
     description="Smart app banners on Plone for iOS and Android.",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
