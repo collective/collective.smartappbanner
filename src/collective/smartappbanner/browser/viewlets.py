@@ -28,7 +28,7 @@ class smartappbannerViewlet(ViewletBase):
         platforms = u','.join(platforms)
 
         # Get icon url
-        icon = self.settings.icon
+        icon = self.settings.icon or u''
         if icon and not icon.startswith(u'http'):
             nav_root = api.portal.get_navigation_root(self.context)
             if not icon.startswith(u'/'):
@@ -37,17 +37,23 @@ class smartappbannerViewlet(ViewletBase):
 
         tags = {}
         # We add all options, even those who are empty.
-        # The javascript expects this.
-        tags['smartbanner:title'] = self.settings.app_title
-        tags['smartbanner:author'] = self.settings.author
-        tags['smartbanner:price'] = self.settings.price
-        tags['smartbanner:price-suffix-apple'] = 'On the App Store'
-        tags['smartbanner:price-suffix-google'] = 'In Google Play'
+        # The javascript expects all options to be there,
+        # and have content, so not None or an empty string,
+        # otherwise the user sees 'undefined' in the banner.
+        # We could make everything required,
+        # but it is easier to simply use a space.
+        tags['smartbanner:title'] = self.settings.app_title or u' '
+        tags['smartbanner:author'] = self.settings.author or u' '
+        tags['smartbanner:price'] = self.settings.price or u' '
+        # Note that the suffixes need a space in front,
+        # because they get added right after the price.
+        tags['smartbanner:price-suffix-apple'] = u' On the App Store'
+        tags['smartbanner:price-suffix-google'] = u' In Google Play'
         tags['smartbanner:icon-apple'] = icon
         tags['smartbanner:icon-google'] = icon
-        tags['smartbanner:button'] = self.settings.button_text
-        tags['smartbanner:button-url-apple'] = ios_url
-        tags['smartbanner:button-url-google'] = android_url
+        tags['smartbanner:button'] = self.settings.button_text or u''
+        tags['smartbanner:button-url-apple'] = ios_url or u''
+        tags['smartbanner:button-url-google'] = android_url or u''
         tags['smartbanner:enabled-platforms'] = platforms
 
         return tags
