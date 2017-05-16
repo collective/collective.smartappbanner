@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.smartappbanner 1.0\n"
-"POT-Creation-Date: 2017-05-16 09:50+0000\n"
+"POT-Creation-Date: 2017-05-16 16:34+0000\n"
 "PO-Revision-Date: 2017-05-11 17:48 +0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Zest Software <info@zestsoftware.nl>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.smartappbanner\n"
 "Language: nl\n"
+
+#: ../browser/interfaces.py:37
+msgid "App ID in Apple store"
+msgstr "App ID in Apple store"
+
+#: ../browser/interfaces.py:46
+msgid "App ID in Google play"
+msgstr "App ID in Google play"
+
+#: ../browser/interfaces.py:51
+msgid "App ID in Windows store"
+msgstr "App ID in Windows store"
 
 #: ../browser/interfaces.py:16
 msgid "Author of the app"
@@ -54,13 +66,10 @@ msgstr "Tekst op knop"
 msgid "Uninstalls the collective.smartappbanner add-on."
 msgstr "Deactiveert het collective.smartappbanner product."
 
-#: ../browser/interfaces.py:37
-msgid "Url app in Apple store"
-msgstr "Link naar app in Apple store"
-
-#: ../browser/interfaces.py:42
-msgid "Url app in Google play"
-msgstr "Link naar app in Google play"
+#. Default: "If you only support the App Store, all other options can be ignored."
+#: ../browser/interfaces.py:38
+msgid "app_id_description"
+msgstr "Als je alleen App Store wilt ondersteunen, kan je alle andere opties negeren."
 
 #: ../configure.zcml:21
 msgid "collective.smartappbanner"
@@ -70,10 +79,14 @@ msgstr "collective.smartappbanner"
 msgid "collective.smartappbanner (uninstall)"
 msgstr "collective.smartappbanner (deactivatie)"
 
-#: ../browser/viewlets.py:55
+#: ../browser/viewlets.py:57
 msgid "in Google Play"
 msgstr "in Google Play"
 
-#: ../browser/viewlets.py:53
+#: ../browser/viewlets.py:60
+msgid "in Windows Store"
+msgstr "in Windows Store"
+
+#: ../browser/viewlets.py:54
 msgid "on the App Store"
 msgstr "op de App Store"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-05-16 09:50+0000\n"
+"POT-Creation-Date: 2017-05-16 16:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.smartappbanner\n"
+
+#: ../browser/interfaces.py:37
+msgid "App ID in Apple store"
+msgstr ""
+
+#: ../browser/interfaces.py:46
+msgid "App ID in Google play"
+msgstr ""
+
+#: ../browser/interfaces.py:51
+msgid "App ID in Windows store"
+msgstr ""
 
 #: ../browser/interfaces.py:16
 msgid "Author of the app"
@@ -54,12 +66,9 @@ msgstr ""
 msgid "Uninstalls the collective.smartappbanner add-on."
 msgstr ""
 
-#: ../browser/interfaces.py:37
-msgid "Url app in Apple store"
-msgstr ""
-
-#: ../browser/interfaces.py:42
-msgid "Url app in Google play"
+#. Default: "If you only support the App Store, all other options can be ignored."
+#: ../browser/interfaces.py:38
+msgid "app_id_description"
 msgstr ""
 
 #: ../configure.zcml:21
@@ -70,10 +79,14 @@ msgstr ""
 msgid "collective.smartappbanner (uninstall)"
 msgstr ""
 
-#: ../browser/viewlets.py:55
+#: ../browser/viewlets.py:57
 msgid "in Google Play"
 msgstr ""
 
-#: ../browser/viewlets.py:53
+#: ../browser/viewlets.py:60
+msgid "in Windows Store"
+msgstr ""
+
+#: ../browser/viewlets.py:54
 msgid "on the App Store"
 msgstr ""
