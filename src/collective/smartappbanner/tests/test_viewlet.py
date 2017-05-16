@@ -28,13 +28,38 @@ class TestViewlet(unittest.TestCase):
         settings.author = u'The knights who say Ni'
         settings.icon = u'shrubbery.png'
         self.assertNotIn('smartbanner', self.portal())
-        settings.ios_url = u'some-ios-url'
+
+        # Add ios settings.
+        settings.ios_id = u'1234567890'
         home = self.portal()
-        self.assertIn('smartbanner', home)
-        self.assertIn('<meta content="Gardening for knights" name="smartbanner:title">', home)  # noqa
-        self.assertIn('<meta content="http://nohost/plone/shrubbery.png" name="smartbanner:icon-apple">', home)  # noqa
-        self.assertIn('<meta content=" on the App Store" name="smartbanner:price-suffix-apple">', home)  # noqa
-        self.assertIn('<meta content="ios" name="smartbanner:enabled-platforms">', home)  # noqa
-        settings.android_url = u'some-android-url'
+        # We expect
+        # <meta content="app-id=1234567890" name="apple-itunes-app">
+        # but the order of the meta tag properties may be the
+        # other way around.
+        self.assertIn('content="app-id=1234567890"', home)
+        self.assertIn('name="apple-itunes-app"', home)
+        # apple does not need the javascript code
+        self.assertNotIn('new SmartBanner', home)
+        self.assertNotIn('name="google-play-app"', home)
+        self.assertNotIn('name="msApplication-ID"', home)
+
+        # Add android settings
+        settings.android_id = u'org-example-app'
         home = self.portal()
-        self.assertIn('<meta content="android,ios" name="smartbanner:enabled-platforms">', home)  # noqa
+        self.assertIn('new SmartBanner', home)
+        self.assertIn('name="apple-itunes-app"', home)
+        self.assertIn('name="google-play-app"', home)
+        self.assertNotIn('name="msApplication-ID"', home)
+        self.assertIn('content="app-id=1234567890"', home)
+        self.assertIn('content="app-id=org-example-app"', home)
+
+        # Add windows settings
+        settings.windows_id = u'org-windows-example-app'
+        home = self.portal()
+        self.assertIn('new SmartBanner', home)
+        self.assertIn('name="apple-itunes-app"', home)
+        self.assertIn('name="google-play-app"', home)
+        self.assertIn('name="msApplication-ID"', home)
+        self.assertIn('content="app-id=1234567890"', home)
+        self.assertIn('content="app-id=org-example-app"', home)
+        self.assertIn('content="app-id=org-windows-example-app"', home)

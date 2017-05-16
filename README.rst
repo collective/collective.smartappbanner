@@ -19,6 +19,9 @@ Features
 
 - Adds meta tags, which are handled by the javascript to show a banner for your app when viewed on a mobile device.
 
+- For ios (Apple) the meta tag is actually enough.
+  The javascript is only used for Android and Windows.
+
 
 ..  Examples
     --------
@@ -51,17 +54,23 @@ Install collective.smartappbanner by adding it to your buildout::
 and then running ``bin/buildout``
 
 After you start your Plone Site, you can install it in the add-ons control panel.
-This adds a control panel where you can configure the app name, urls, supported platforms, etcetera.
+This adds a control panel where you can configure the app name, app IDs, etcetera.
 
-We only create meta tags if at least one of the App Store or Google Play urls is filled in.
+We only create meta tags if at least one of the app ids is filled in.
 
-.. TODO This is still on bitbucket.
 
-    Contribute
-    ----------
+Debugging
+---------
 
-    - Issue Tracker: https://github.com/collective/collective.smartappbanner/issues
-    - Source Code: https://github.com/collective/collective.smartappbanner
+You can test how the banner looks, also on for example a laptop, by appending ``?force_platform=ios`` to the URL in your browser.
+Options are ``ios``, ``android``, and ``windows``.
+
+
+Contribute
+----------
+
+- Issue Tracker: https://github.com/collective/collective.smartappbanner/issues
+- Source Code: https://github.com/collective/collective.smartappbanner
 
 
 Support

@@ -33,13 +33,22 @@ class ISmartappbannerBaseSettings(Interface):
         required=False,
         default=u'View',
     )
-    ios_url = schema.TextLine(
-        title=_(u'Url app in Apple store'),
+    ios_id = schema.TextLine(
+        title=_(u'App ID in Apple store'),
+        description=_(
+            u'app_id_description',
+            default=u'If you only support the App Store, '
+                    u'all other options can be ignored.'),
         required=False,
         default=u'',
     )
-    android_url = schema.TextLine(
-        title=_(u'Url app in Google play'),
+    android_id = schema.TextLine(
+        title=_(u'App ID in Google play'),
+        required=False,
+        default=u'',
+    )
+    windows_id = schema.TextLine(
+        title=_(u'App ID in Windows store'),
         required=False,
         default=u'',
     )

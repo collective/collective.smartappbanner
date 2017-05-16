@@ -3,3 +3,6 @@
     tal:repeat="tag meta_tags">
   <meta tal:attributes="name tag;content python: meta_tags[tag]">
 </tal:block>
+<script type="text/javascript"
+        tal:condition="view/script"
+        tal:content="view/script"></script>

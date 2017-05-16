@@ -15,7 +15,7 @@
   <browser:resourceDirectory
     name="collective.smartappbanner"
     directory="static" />
- 
+
   <browser:page
     name="smartappbanner-settings"
     for="Products.CMFCore.interfaces.ISiteRoot"
@@ -27,7 +27,7 @@
     name="smartappbanner"
     for="*"
     manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-    class=".viewlets.smartappbannerViewlet"
+    class=".viewlets.SmartappbannerViewlet"
     layer="..interfaces.ICollectiveSmartappbannerLayer"
     template="smartappbanner.pt"
     permission="zope2.View"

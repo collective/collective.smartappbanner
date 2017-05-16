@@ -6,28 +6,86 @@ from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError
 from zope.component import getUtility
-from zope.i18n import translate
+
+import json
 
 
-class smartappbannerViewlet(ViewletBase):
+DAYS_HIDDEN = 15
+DAYS_REMINDER = 90
 
-    def meta_tags(self):
+
+class SmartappbannerViewlet(ViewletBase):
+
+    script = u''
+    meta_tags = None
+
+    def update(self):
+        # Reset the class defaults, to prevent accidentally leaking
+        # data between calls.  Probably not needed, but I like to make sure.
+        self.meta_tags = {}
+        self.script = u''
         try:
             self.settings = getUtility(
                 IRegistry).forInterface(ISmartappbannerBaseSettings)  # noqa
         except (ComponentLookupError, KeyError):
             return
-        # Do we have a url for at least one platform?
-        platforms = []
-        android_url = self.settings.android_url
-        if android_url:
-            platforms.append(u'android')
-        ios_url = self.settings.ios_url
-        if ios_url:
-            platforms.append(u'ios')
+        # Do we have an ID for at least one platform?
+        platforms = {}
+        android_id = self.settings.android_id
+        if android_id:
+            platforms[u'android'] = android_id
+        ios_id = self.settings.ios_id
+        if ios_id:
+            platforms[u'ios'] = ios_id
+        windows_id = self.settings.windows_id
+        if windows_id:
+            platforms[u'windows'] = windows_id
         if not platforms:
             return
-        platforms = u','.join(platforms)
+
+        price_tag = self.settings.price or u''
+        store = {}
+        price = {}
+        for platform, pid in platforms.items():
+            # We currently have the same price per platform.
+            # We expect the app to be free in most cases.
+            price[platform] = price_tag
+            if platform == u'ios':
+                store[platform] = api.portal.translate(_(u'on the App Store'))
+                self.meta_tags[u'apple-itunes-app'] = u'app-id={0}'.format(pid)
+            elif platform == u'android':
+                store[platform] = api.portal.translate(_(u'in Google Play'))
+                self.meta_tags[u'google-play-app'] = u'app-id={0}'.format(pid)
+            elif platform == u'windows':
+                store[platform] = api.portal.translate(_(u'in Windows Store'))
+                self.meta_tags[u'msApplication-ID'] = u'app-id={0}'.format(pid)
+
+        # If we only have information for ios, then the meta tag is enough.
+        # We do not need the script or any other options.
+        if len(platforms) == 1 and 'ios' in platforms:
+            return
+
+        # We add all options, even those who are empty.
+        # Make sure to not add None, as that may lead to javasript errors.
+        language = api.portal.get_current_language()
+        # For more information about options, see
+        # https://github.com/kudago/smart-app-banner
+        options = {
+            # days to hide banner after close button is clicked:
+            'daysHidden': DAYS_HIDDEN,
+            # days to hide banner after "VIEW" button is clicked:
+            'daysReminder': DAYS_REMINDER,
+            # language code for the App Store:
+            'appStoreLanguage': language,
+            'title': self.settings.app_title or u'',
+            'author': self.settings.author or u'',
+            'button': self.settings.button_text or u'',
+            'store': store,
+            'price': price,
+            # put platform type ('ios', 'android', etc.) here to force
+            # a single theme on all devices:
+            # theme: '',
+        }
 
         # Get icon url
         icon = self.settings.icon or u''
@@ -36,28 +94,14 @@ class smartappbannerViewlet(ViewletBase):
             if not icon.startswith(u'/'):
                 icon = u'/' + icon
             icon = nav_root.absolute_url() + icon
+        if icon:
+            # full path to icon image if not using website icon image
+            options['icon'] = icon
 
-        tags = {}
-        # We add all options, even those who are empty.
-        # The javascript expects all options to be there,
-        # and have content, so not None or an empty string,
-        # otherwise the user sees 'undefined' in the banner.
-        # We could make everything required,
-        # but it is easier to simply use a space.
-        tags['smartbanner:title'] = self.settings.app_title or u' '
-        tags['smartbanner:author'] = self.settings.author or u' '
-        tags['smartbanner:price'] = self.settings.price or u' '
-        # Note that the suffixes need a space in front,
-        # because they get added right after the price.
-        tags['smartbanner:price-suffix-apple'] = u' ' + translate(
-            _(u'on the App Store'), context=self.request)
-        tags['smartbanner:price-suffix-google'] = u' ' + translate(
-            _(u'in Google Play'), context=self.request)
-        tags['smartbanner:icon-apple'] = icon
-        tags['smartbanner:icon-google'] = icon
-        tags['smartbanner:button'] = self.settings.button_text or u''
-        tags['smartbanner:button-url-apple'] = ios_url or u''
-        tags['smartbanner:button-url-google'] = android_url or u''
-        tags['smartbanner:enabled-platforms'] = platforms
+        # Maybe force showing as if we look from a certain platform.
+        force = self.request.get('force_platform')
+        if force:
+            # Emulate a platform (ios/android/windows).
+            options['force'] = force
 
-        return tags
+        self.script = u'new SmartBanner({0});'.format(json.dumps(options))
