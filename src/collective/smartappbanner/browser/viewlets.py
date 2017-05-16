@@ -65,6 +65,14 @@ class SmartappbannerViewlet(ViewletBase):
         if len(platforms) == 1 and 'ios' in platforms:
             return
 
+        # Get the options for the javascript.
+        options = self.generate_options()
+        options['store'] = store
+        options['price'] = price
+
+        self.script = u'new SmartBanner({0});'.format(json.dumps(options))
+
+    def generate_options(self):
         # We add all options, even those who are empty.
         # Make sure to not add None, as that may lead to javasript errors.
         language = api.portal.get_current_language()
@@ -80,8 +88,6 @@ class SmartappbannerViewlet(ViewletBase):
             'title': self.settings.app_title or u'',
             'author': self.settings.author or u'',
             'button': self.settings.button_text or u'',
-            'store': store,
-            'price': price,
             # put platform type ('ios', 'android', etc.) here to force
             # a single theme on all devices:
             # theme: '',
@@ -104,4 +110,4 @@ class SmartappbannerViewlet(ViewletBase):
             # Emulate a platform (ios/android/windows).
             options['force'] = force
 
-        self.script = u'new SmartBanner({0});'.format(json.dumps(options))
+        return options
