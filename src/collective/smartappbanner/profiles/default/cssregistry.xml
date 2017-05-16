@@ -24,7 +24,7 @@
       -->
 
      <stylesheet
-        id="++resource++collective.smartappbanner/smartbanner.css"
+        id="++resource++collective.smartappbanner/smart-app-banner.css"
         cacheable="True"
         compression="safe"
         cookable="True"

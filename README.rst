@@ -15,7 +15,8 @@ Customisable smart app banners on Plone for iOS and Android.
 Features
 --------
 
-- Uses `smartbanner.js <https://github.com/ain/smartbanner.js>`_ from Ain Tohvri.  (Thanks!)
+- Uses `smart-app-banner.js <https://github.com/kudago/smart-app-banner>`_ from Diva Yv / Kudago.  (Thanks!)
+
 - Adds meta tags, which are handled by the javascript to show a banner for your app when viewed on a mobile device.
 
 
