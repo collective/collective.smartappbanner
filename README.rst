@@ -6,7 +6,7 @@
 collective.smartappbanner
 =========================
 
-Customisable smart app banners on Plone for iOS and Android.
+Customisable smart app banners on Plone for iOS, Android, and Windows.
 
 .. image:: https://img.shields.io/travis/collective/collective.smartappbanner/master.svg
     :target: http://travis-ci.org/collective/collective.smartappbanner
@@ -19,7 +19,7 @@ Features
 
 - Adds meta tags, which are handled by the javascript to show a banner for your app when viewed on a mobile device.
 
-- For ios (Apple) the meta tag is actually enough.
+- For ios (Apple) the meta tag is actually enough: just fill in the ios App id and ignore all other options.
   The javascript is only used for Android and Windows.
 
 
