@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.smartappbanner 1.0\n"
-"POT-Creation-Date: 2017-05-11 15:48+0000\n"
+"POT-Creation-Date: 2017-05-16 09:50+0000\n"
 "PO-Revision-Date: 2017-05-11 17:48 +0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Zest Software <info@zestsoftware.nl>\n"
@@ -13,9 +13,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: nl\n"
 "Language-Name: Nederlands\n"
-"Language: nl\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.smartappbanner\n"
+"Language: nl\n"
 
 #: ../browser/interfaces.py:16
 msgid "Author of the app"
@@ -69,3 +69,11 @@ msgstr "collective.smartappbanner"
 #: ../configure.zcml:30
 msgid "collective.smartappbanner (uninstall)"
 msgstr "collective.smartappbanner (deactivatie)"
+
+#: ../browser/viewlets.py:55
+msgid "in Google Play"
+msgstr "in Google Play"
+
+#: ../browser/viewlets.py:53
+msgid "on the App Store"
+msgstr "op de App Store"

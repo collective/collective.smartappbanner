@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-05-11 15:48+0000\n"
+"POT-Creation-Date: 2017-05-16 09:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,4 +68,12 @@ msgstr ""
 
 #: ../configure.zcml:30
 msgid "collective.smartappbanner (uninstall)"
+msgstr ""
+
+#: ../browser/viewlets.py:55
+msgid "in Google Play"
+msgstr ""
+
+#: ../browser/viewlets.py:53
+msgid "on the App Store"
 msgstr ""

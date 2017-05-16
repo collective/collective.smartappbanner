@@ -5,7 +5,7 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Translate 'on the App Store' and 'in Google Play'.  [maurits]
 
 
 1.0a1 (2017-05-12)

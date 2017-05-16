@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
+from collective.smartappbanner import _
 from collective.smartappbanner.browser.interfaces import ISmartappbannerBaseSettings  # noqa
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
 from zope.component import ComponentLookupError
 from zope.component import getUtility
+from zope.i18n import translate
 
 
 class smartappbannerViewlet(ViewletBase):
@@ -47,8 +49,10 @@ class smartappbannerViewlet(ViewletBase):
         tags['smartbanner:price'] = self.settings.price or u' '
         # Note that the suffixes need a space in front,
         # because they get added right after the price.
-        tags['smartbanner:price-suffix-apple'] = u' On the App Store'
-        tags['smartbanner:price-suffix-google'] = u' In Google Play'
+        tags['smartbanner:price-suffix-apple'] = u' ' + translate(
+            _(u'on the App Store'), context=self.request)
+        tags['smartbanner:price-suffix-google'] = u' ' + translate(
+            _(u'in Google Play'), context=self.request)
         tags['smartbanner:icon-apple'] = icon
         tags['smartbanner:icon-google'] = icon
         tags['smartbanner:button'] = self.settings.button_text or u''
