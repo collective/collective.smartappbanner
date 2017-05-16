@@ -8,6 +8,10 @@ collective.smartappbanner
 
 Customisable smart app banners on Plone for iOS and Android.
 
+.. image:: https://img.shields.io/travis/collective/collective.smartappbanner/master.svg
+    :target: http://travis-ci.org/collective/collective.smartappbanner
+
+
 Features
 --------
 
