@@ -33,7 +33,7 @@ class TestViewlet(unittest.TestCase):
         self.assertIn('smartbanner', home)
         self.assertIn('<meta content="Gardening for knights" name="smartbanner:title">', home)  # noqa
         self.assertIn('<meta content="http://nohost/plone/shrubbery.png" name="smartbanner:icon-apple">', home)  # noqa
-        self.assertIn('<meta content=" On the App Store" name="smartbanner:price-suffix-apple">', home)  # noqa
+        self.assertIn('<meta content=" on the App Store" name="smartbanner:price-suffix-apple">', home)  # noqa
         self.assertIn('<meta content="ios" name="smartbanner:enabled-platforms">', home)  # noqa
         settings.android_url = u'some-android-url'
         home = self.portal()
