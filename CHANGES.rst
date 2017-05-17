@@ -5,6 +5,9 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
+- Upgrade step: do not compress our javascript in the registry.
+  It is already compressed.  [maurits]
+
 - Updated javascript with fix for double ios banner.
   This includes a fix from `tomek-f <https://github.com/kudago/smart-app-banner/pull/80>`_.
   [maurits]

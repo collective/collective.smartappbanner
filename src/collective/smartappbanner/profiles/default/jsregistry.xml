@@ -2,6 +2,6 @@
 <object name="portal_javascripts">
     <javascript
         id="++resource++collective.smartappbanner/smart-app-banner.js"
-        cacheable="True" compression="safe" cookable="True"
+        cacheable="True" compression="none" cookable="True"
         enabled="True" expression=""  inline="False" insert-after="toc.js"/>
 </object>
