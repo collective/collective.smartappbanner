@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.1 (unreleased)
+1.0.1 (2017-05-17)
 ------------------
 
 - Upgrade step: do not compress our javascript in the registry.
