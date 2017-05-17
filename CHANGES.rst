@@ -5,7 +5,9 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Updated javascript with fix for double ios banner.
+  This includes a fix from `tomek-f <https://github.com/kudago/smart-app-banner/pull/80>`_.
+  [maurits]
 
 
 1.0 (2017-05-16)
